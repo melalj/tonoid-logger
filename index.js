@@ -44,6 +44,7 @@ module.exports = () => ({
       error: logger.error.bind(logger),
       warn: logger.warn.bind(logger),
       debug: logger.debug.bind(logger),
+      winstonInstance: logger,
       winston,
       format,
     };
