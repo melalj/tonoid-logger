@@ -45,7 +45,7 @@ module.exports = (params) => ({
       prettyPrint = !isProd,
       splat = !isProd,
       simple = !isProd,
-    } = params;
+    } = params || {};
 
     let level = isProd ? 'info' : 'debug';
     if (process.env.LOG_LEVEL) level = process.env.LOG_LEVEL;
