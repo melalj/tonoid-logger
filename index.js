@@ -29,22 +29,24 @@ const defaultFormat = ({
   return format.combine.apply(null, list);
 };
 
-const isProd = (
-  process.env.NODE_ENV === 'production'
-  || process.env.NODE_ENV === 'staging'
-);
-const isTest = (process.env.NODE_ENV === 'test');
-
-module.exports = ({
-  customFormat = undefined,
-  json = isProd,
-  colorize = !isProd,
-  prettyPrint = !isProd,
-  splat = !isProd,
-  simple = !isProd,
-}) => ({
+module.exports = (params) => ({
   name: 'logger',
   init: () => {
+    const isProd = (
+      process.env.NODE_ENV === 'production'
+      || process.env.NODE_ENV === 'staging'
+    );
+    const isTest = (process.env.NODE_ENV === 'test');
+
+    const {
+      customFormat = undefined,
+      json = isProd,
+      colorize = !isProd,
+      prettyPrint = !isProd,
+      splat = !isProd,
+      simple = !isProd,
+    } = params;
+
     let level = isProd ? 'info' : 'debug';
     if (process.env.LOG_LEVEL) level = process.env.LOG_LEVEL;
 
